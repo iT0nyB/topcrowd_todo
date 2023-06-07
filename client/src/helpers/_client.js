@@ -1,7 +1,6 @@
 import axios from 'axios';
 
-// export const baseURL = "https://topcrowdtodobackend-production.up.railway.app/todos";
-export const baseURL = "http://localhost:4000/todos";
+export const baseURL = "https://topcrowdtodobackend-production.up.railway.app/todos";
 
 const client = axios.create({baseURL});
 
