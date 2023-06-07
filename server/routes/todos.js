@@ -7,11 +7,23 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
     let collection = await db.collection("todos");
+    const {page, pageSize} = req.query;
+    const skip = (page - 1) * pageSize;
+    const limit = parseInt(pageSize);
     let results = await collection.find({})
-        .limit(50)
+        .skip(skip)
+        .limit(limit)
         .toArray();
 
-    res.send(results).status(200);
+    let totalCount = await collection.countDocuments({});
+
+    const paginatedObj = {
+        data: results,
+        total: totalCount,
+        totalPages: Math.ceil(totalCount/pageSize)
+    }
+
+    res.send(paginatedObj).status(200);
 });
 
 router.get("/:id", async (req, res) => {

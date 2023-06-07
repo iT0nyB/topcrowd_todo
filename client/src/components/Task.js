@@ -17,6 +17,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import IconButton from "@mui/material/IconButton";
 import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 
@@ -38,6 +39,7 @@ const Task = ({task}) => {
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const [editTaskOpen, setEditTaskOpen] = useState(false);
+    const [deleteTaskOpen, setDeleteTaskOpen] = useState(false);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -55,6 +57,17 @@ const Task = ({task}) => {
     const handleClickClose = () => {
         setEditTaskOpen(false);
     };
+
+    const handleChange = () => {
+    }
+
+    const handleDeleteOpen = () => {
+        setDeleteTaskOpen(true);
+    }
+
+    const handleDeleteClose = () => {
+        setDeleteTaskOpen(false);
+    }
 
     return (
         <Card sx={{ width: 345, maxWidth: 345 }}>
@@ -79,7 +92,9 @@ const Task = ({task}) => {
                     horizontal: 'left',
                 }}
             >
+                <MenuItem onClick={handleChange}>Mark as Completed</MenuItem>
                 <MenuItem onClick={handleClickOpen}>Edit Task</MenuItem>
+                <MenuItem onClick={handleDeleteOpen}>Delete Task</MenuItem>
             </Menu>
             <Dialog open={editTaskOpen} onClose={handleClose}>
                 <DialogTitle>Edit Task</DialogTitle>
@@ -91,7 +106,7 @@ const Task = ({task}) => {
                         autoFocus
                         margin="dense"
                         id="title"
-                        label="title"
+                        label="Title"
                         type="text"
                         fullWidth
                         variant="standard"
@@ -112,10 +127,25 @@ const Task = ({task}) => {
                     <Button onClick={handleClose}>Update</Button>
                 </DialogActions>
             </Dialog>
+            <Dialog open={deleteTaskOpen} onClose={handleClose}>
+                <DialogTitle>Delete Task?</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        Are you sure you want to delete this task. This action is IRREVERSIBLE!
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleDeleteClose}>Cancel</Button>
+                    <Button onClick={handleDeleteClose} variant="contained" color="error" >DELETE</Button>
+                </DialogActions>
+            </Dialog>
             <CardActions disableSpacing>
-                <Checkbox {...label} icon={<CheckBoxOutlineBlankIcon />} checkedIcon={<CheckBoxIcon color="success"/>} />
-                <IconButton onClick={handleClickOpen}>
+                <Checkbox {...label} checked={task.completed} onChange={handleChange} icon={<CheckBoxOutlineBlankIcon />} checkedIcon={<CheckBoxIcon color="success"/>} />
+                <IconButton aria-label="edit" onClick={handleClickOpen}>
                     <EditIcon />
+                </IconButton>
+                <IconButton aria-label="delete" onClick={handleDeleteOpen}>
+                    <DeleteIcon />
                 </IconButton>
                 <ExpandMore
                     expand={expanded}

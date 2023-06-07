@@ -2,14 +2,11 @@
   "name": "material-cra",
   "version": "5.0.0",
   "private": true,
-  "homepage": "https://iT0nyB.github.io/topcrowd_todo",
   "scripts": {
-    "start": "react-dotenv && react-scripts start",
-    "build": "react-dotenv && react-scripts build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "eject": "react-scripts eject"
   },
   "dependencies": {
     "@emotion/react": "^11.11.0",
@@ -35,12 +32,6 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "gh-pages": "^5.0.0"
-  },
-  "react-dotenv": {
-    "whitelist": [
-      "REACT_APP_BACKEND_API"
-    ]
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   }
 }

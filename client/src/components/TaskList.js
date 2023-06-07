@@ -9,7 +9,7 @@ const TaskList = ({tasks}) => {
             alignItems="flex-start"
             spacing={2}>
             {tasks.map(task =>
-                <Task key={task.id} task={task}/>
+                <Task key={task._id} task={task}/>
             )}
         </Stack>
 

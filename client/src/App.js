@@ -1,6 +1,5 @@
-import {Box} from "@mui/material";
+import Box from "@mui/material/Box";
 import Dashboard from "./components/Dashboard";
-import Container from "@mui/material/Container";
 import ToDoAppBar from "./components/ToDoAppBar";
 
 export default function App() {
