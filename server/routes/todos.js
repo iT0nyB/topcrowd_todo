@@ -19,8 +19,10 @@ router.get("/", async (req, res) => {
 
     const paginatedObj = {
         data: results,
-        total: totalCount,
-        totalPages: Math.ceil(totalCount/pageSize)
+        pagination: {
+            total: totalCount,
+            totalPages: Math.ceil(totalCount/pageSize)
+        }
     }
 
     res.send(paginatedObj).status(200);
