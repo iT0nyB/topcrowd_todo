@@ -4,7 +4,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
 import App from './App';
 import theme from './theme';
-import store from './store/store';
+import store from './store';
 import {Provider} from "react-redux";
 
 const rootElement = document.getElementById('root');
